@@ -44,7 +44,7 @@ jobs:
                   "base":"main"
                 }')
           
-          echo "pr_number=$({response} | jq '.number')"
+          echo "pr_number=${response} | jq '.number'"
 
 #      - name: Add label to pull request
 #        run: echo ${{ steps.createPullRequest.outputs.pr_number }}
