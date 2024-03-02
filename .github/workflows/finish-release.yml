@@ -44,10 +44,10 @@ jobs:
                   "base":"main"
                 }')
           
-          echo "pr_number=$({response} | jq '.number')" >> "$GITHUB_OUTPUT"
+          echo "pr_number=$({response} | jq '.number')"
 
-      - name: Add label to pull request
-        run: echo ${{ steps.createPullRequest.outputs.pr_number }}
+#      - name: Add label to pull request
+#        run: echo ${{ steps.createPullRequest.outputs.pr_number }}
 
   
 
