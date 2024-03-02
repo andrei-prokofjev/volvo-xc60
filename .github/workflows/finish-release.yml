@@ -28,8 +28,8 @@ jobs:
         env:
           VERSION: ${{ steps.parse.outputs.version }}
         run: |
-          git tag -a v${{ env.VERSION }} -m "Release v${{ env.VERSION }}"
           git tag
+          git tag -a v${{ env.VERSION }} -m "Release v${{ env.VERSION }}"
           git push origin v${{ env.VERSION }}
 
       - name: Create main <- release pull request
