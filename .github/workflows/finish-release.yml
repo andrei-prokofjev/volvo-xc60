@@ -27,6 +27,7 @@ jobs:
 #          git push origin v${{ env.VERSION }}
 
       - name: Create main <- release pull request
+        id: createPullRequest
         env:
           VERSION: ${{ steps.parse.outputs.version }}
         run: |
@@ -42,8 +43,14 @@ jobs:
                   "head":"${{ github.ref_name }}",
                   "base":"main"
                 }')
-          echo "response=${response}"
-          echo $response | jq '.number'
+          
+          echo "pr_number=${response} | jq '.number'" >> "$GITHUB_OUTPUT"
+
+      - name: Add label to pull request
+        env:
+          PR_NUMBER: ${{ steps.createPullRequest.outputs.pr_number }}
+        run: echo ${{ PR_NUMBER }}
+
   
 
   create-release:
