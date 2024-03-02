@@ -18,15 +18,16 @@ jobs:
           trimmed_branch=${branch_name#release/}
           echo "version=${trimmed_branch}" >> "$GITHUB_OUTPUT"
 
-#      - name: Create release git tag
-#        env:
-#          VERSION: ${{ steps.parse.outputs.version }}
-#        run: |
-#          git tag
-#          git tag -a v${{ env.VERSION }} -m "Release v${{ env.VERSION }}"
-#          git push origin v${{ env.VERSION }}
+      #      - name: Create release git tag
+      #        env:
+      #          VERSION: ${{ steps.parse.outputs.version }}
+      #        run: |
+      #          git tag
+      #          git tag -a v${{ env.VERSION }} -m "Release v${{ env.VERSION }}"
+      #          git push origin v${{ env.VERSION }}
 
       - name: Create main <- release pull request
+        id: createPr
         env:
           VERSION: ${{ steps.parse.outputs.version }}
         run: |
@@ -43,6 +44,9 @@ jobs:
                   "base":"main"
                 }')
           echo "pr_number=$(echo $response | jq '.number'")" >> "$GITHUB_OUTPUT"        
+
+      - name: Add label
+        run: echo "Add label to PR ${{  steps.createPr.outputs.pr_number }}"
   
 
   create-release:
