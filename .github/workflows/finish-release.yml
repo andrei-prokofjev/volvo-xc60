@@ -18,21 +18,21 @@ jobs:
           trimmed_branch=${branch_name#release/}
           echo "version=${trimmed_branch}" >> "$GITHUB_OUTPUT"
 
-#      - name: run curl
-#        run: |
-#          status=$(curl -s --request POST \
-#          --url https://x.com/api \
-#          --header 'Token: ${{ env.TOKEN }}' \
-#          --header 'content-type: application/json' \
-#          --data '{"parameters": {"run_workflow_test":true, "source_branch":"${{ steps.comment-branch.outputs.head_ref }}"}
-#          }' | jq -r '.state'); echo "status=$status" >> $GITHUB_OUTPUT
-#        id: req
+      #      - name: run curl
+      #        run: |
+      #          status=$(curl -s --request POST \
+      #          --url https://x.com/api \
+      #          --header 'Token: ${{ env.TOKEN }}' \
+      #          --header 'content-type: application/json' \
+      #          --data '{"parameters": {"run_workflow_test":true, "source_branch":"${{ steps.comment-branch.outputs.head_ref }}"}
+      #          }' | jq -r '.state'); echo "status=$status" >> $GITHUB_OUTPUT
+      #        id: req
 
       - name: Create main <- release pull request
         env:
           VERSION: ${{ steps.parse.outputs.version }}
         run: |
-          status=$(curl -L \
+          response=$(curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
@@ -44,7 +44,7 @@ jobs:
                   "head":"${{ github.ref_name }}",
                   "base":"main"
                 }')
-#            echo "response=${response}"
+            echo "response=${response}"
 
 #      - name: Add label
 #        run: |
