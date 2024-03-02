@@ -40,7 +40,7 @@ jobs:
                   "title":"main <- release/${{ env.VERSION }}",
                   "body":"Created by Github action",
                   "head":"${{ github.ref_name }}",
-                  "base":"main",
+                  "base":"main"
                 }')
             echo "response=${response}"
 
