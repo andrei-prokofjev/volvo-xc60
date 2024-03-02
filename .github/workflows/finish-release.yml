@@ -66,6 +66,7 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/andrei-prokofjev/volvo-xc60/releases \
             -d '{
+                  "tag_name":"v${{ env.VERSION }}",
                   "target_commitish":"main",
                   "name":"v${{ env.VERSION }}",
                   "body":"Release created by Github action",
