@@ -22,7 +22,7 @@ jobs:
         env:
           VERSION: ${{ steps.parse.outputs.version }}
         continue-on-error: true
-        run: git push origin -d release/v${{ env.VERSION }}
+        run: git push origin -d release/${{ env.VERSION }}
 
       - name: Create release git tag
         env:
