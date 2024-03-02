@@ -3,7 +3,7 @@ name: "Finish release"
 on:
   workflow_dispatch:
   pull_request:
-    branches: [ main ]
+#    branches: [ main ]
     types: [ closed ]
 
 jobs:
@@ -45,7 +45,7 @@ jobs:
                   "base":"main"
                 }')
             echo "response=${response}"
-            number=$($response | jq -r '.number')
+            number=$response | jq -r '.number'
             echo "num=$number"
 
       - name: Add label
