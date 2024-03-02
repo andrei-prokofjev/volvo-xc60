@@ -49,6 +49,7 @@ jobs:
         env:
           PR_NUMBER: ${{ github.event.number }}
         run: |
+          echo "PR_NUMBER=${PR_NUMBER}"
           curl -L \
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
