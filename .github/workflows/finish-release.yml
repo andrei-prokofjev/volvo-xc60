@@ -9,7 +9,7 @@ on:
 jobs:
   create-release-to-main-pull-request:
     if: github.event.pull_request.merged == false
-    runs-on: macOS
+    runs-on: ubuntu-latest
     steps:
       - name: Parse release version
         id: parse
