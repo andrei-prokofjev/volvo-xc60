@@ -43,7 +43,7 @@ jobs:
                   "base":"main"
                 }')
           echo "response=${response}"
-          echo "$response | jq '.number'"
+          echo $response | jq '.number'
   
 
   create-release:
