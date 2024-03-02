@@ -13,14 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERSION: ${{ github.event.inputs.version }}
+      GHP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create release branch
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git checkout -b release/$VERSION
           git push -u origin release/$VERSION
