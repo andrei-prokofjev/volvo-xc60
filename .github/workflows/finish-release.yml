@@ -30,7 +30,10 @@ jobs:
             https://api.github.com/repos/andrei-prokofjev/volvo-xc60/pulls \
             -d '{
                   "title":"main <- release/${{ env.VERSION }}"
-                  ,"body":"Created by Github action","head":"${{ github.ref_name }}","base":"main","labels":["AUTOMATED PR"]}'
+                  ,"body":"Created by Github action",
+                  "head":"${{ github.ref_name }}",
+                  "base":"main"
+                }'
 
 #  create-release: andrei
 #    if: github.event.pull_request.merged == true
