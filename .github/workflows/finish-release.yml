@@ -35,7 +35,7 @@ jobs:
                   "base":"main"
                 }'
 
-#  create-release: andrei
+#  create-release:
 #    if: github.event.pull_request.merged == true
 #    runs-on: [ self-hosted, "${{ vars.USE_MACOS_RUNNERS == 'true' && 'macos' || 'ubuntu-22.04' }}" ]
 #    steps:
