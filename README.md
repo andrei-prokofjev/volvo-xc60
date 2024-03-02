@@ -1,1 +1,1 @@
-# volvo-xc60 v2.5
+# volvo-xc60 v2.6
