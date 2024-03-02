@@ -1,0 +1,25 @@
+name: "Start new release"
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version you want to release.'
+        required: true
+
+jobs:
+  create-new-release:
+    name: Create a new release
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.event.inputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release branch
+        run: |
+          git checkout -b release/$VERSION
+          git push -u origin release/$VERSION
+
