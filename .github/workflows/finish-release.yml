@@ -42,7 +42,9 @@ jobs:
                   "head":"${{ github.ref_name }}",
                   "base":"main"
                 }')
-            echo "response=${response}"
+          echo "response=${response}"
+          echo "$response | jq '.number'"
+  
 
   create-release:
     if: github.event.pull_request.merged == true
