@@ -32,7 +32,7 @@ jobs:
         env:
           VERSION: ${{ steps.parse.outputs.version }}
         run: |
-          curl -L \
+          response=$(curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
@@ -43,7 +43,7 @@ jobs:
                   "body":"Created by Github action",
                   "head":"${{ github.ref_name }}",
                   "base":"main"
-                }'
+                }')
             echo "response=${response}"
             echo "num=${{ github.event.number }}"
 
