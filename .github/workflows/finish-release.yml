@@ -43,10 +43,10 @@ jobs:
                   "body":"Created by Github action",
                   "head":"${{ github.ref_name }}",
                   "base":"main"
-                }' \
-            | jq '.[].number')
+                }')
             echo "response=${response}"
-            echo "num=${{ github.event.number }}"
+            number=$($response | jq -r '.number')
+            echo "num=$number"
 
       - name: Add label
         env:
