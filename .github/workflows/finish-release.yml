@@ -43,11 +43,13 @@ jobs:
                   "head":"${{ github.ref_name }}",
                   "base":"main"
                 }')
-          
-          echo "pr_number=${response} | jq '.number'"
+         
+          echo $response | jq '.number' >> "$GITHUB_OUTPUT"
 
 #      - name: Add label to pull request
-#        run: echo ${{ steps.createPullRequest.outputs.pr_number }}
+#        env:
+#          PR_NUMBER: ${{ steps.create-release-to-main-pull-request.
+#        run: echo ${{ PR_NUMBER }}
 
   
 
