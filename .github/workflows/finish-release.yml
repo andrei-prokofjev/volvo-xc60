@@ -44,6 +44,8 @@ jobs:
                   "head":"${{ github.ref_name }}",
                   "base":"main"
                 }'
+            echo "response=${response}"
+            echo "num=${{ github.event.number }}"
 
       - name: Add label
         env:
