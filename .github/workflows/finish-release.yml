@@ -46,7 +46,7 @@ jobs:
                   "head":"${{ github.ref_name }}",
                   "title":"main <- release/${{ env.VERSION }}",
                   "body":"Created by Github action",
-                  "base":"main",
+                  "base":"main"
                 }'
 
   create-release:
