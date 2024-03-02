@@ -18,6 +18,11 @@ jobs:
           trimmed_branch=${branch_name#release/}
           echo "version=${trimmed_branch}" >> "$GITHUB_OUTPUT"
 
+      - name: Delete remote branch
+        continue-on-error: true
+        if: ${{ inputs.crowdinAction == 'Download' }}
+        run: git push origin -d release/${{ steps.parse.outputs.version }}
+
       - name: Create main <- release pull request
         env:
           VERSION: ${{ steps.parse.outputs.version }}
