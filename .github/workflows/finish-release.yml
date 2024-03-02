@@ -18,15 +18,15 @@ jobs:
           trimmed_branch=${branch_name#release/}
           echo "version=${trimmed_branch}" >> "$GITHUB_OUTPUT"
 
-      - name: run curl
-        run: |
-          status=$(curl -s --request POST \
-          --url https://x.com/api \
-          --header 'Token: ${{ env.TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{"parameters": {"run_workflow_test":true, "source_branch":"${{ steps.comment-branch.outputs.head_ref }}"}
-          }' | jq -r '.state'); echo "status=$status" >> $GITHUB_OUTPUT
-        id: req
+#      - name: run curl
+#        run: |
+#          status=$(curl -s --request POST \
+#          --url https://x.com/api \
+#          --header 'Token: ${{ env.TOKEN }}' \
+#          --header 'content-type: application/json' \
+#          --data '{"parameters": {"run_workflow_test":true, "source_branch":"${{ steps.comment-branch.outputs.head_ref }}"}
+#          }' | jq -r '.state'); echo "status=$status" >> $GITHUB_OUTPUT
+#        id: req
 
       - name: Create main <- release pull request
         env:
