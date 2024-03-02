@@ -3,7 +3,7 @@ name: "Finish release"
 on:
   workflow_dispatch:
   pull_request:
-    branches: [ main ]
+    #    branches: [ main ]
     types: [ closed ]
 
 jobs:
@@ -17,6 +17,20 @@ jobs:
           branch_name=${{ github.ref_name }}
           trimmed_branch=${branch_name#release/}
           echo "version=${trimmed_branch}" >> "$GITHUB_OUTPUT"
+
+      - name: Delete remote branch
+        env:
+          VERSION: ${{ steps.parse.outputs.version }}
+        continue-on-error: true
+        run: git push origin -d release/${{ env.VERSION }}
+
+      - name: Create release git tag
+        env:
+          VERSION: ${{ steps.parse.outputs.version }}
+        run: |
+          git tag -a v${{ env.VERSION }} -m "Release v${{ env.VERSION }}"
+          git tag
+          git push origin v${{ env.VERSION }}
 
       - name: Create main <- release pull request
         env:
@@ -35,7 +49,9 @@ jobs:
                   "base":"main"
                 }'
 
-#  create-release:
+
+
+#  create-release:  adg adf
 #    if: github.event.pull_request.merged == true
 #    runs-on: [ self-hosted, "${{ vars.USE_MACOS_RUNNERS == 'true' && 'macos' || 'ubuntu-22.04' }}" ]
 #    steps:
