@@ -43,11 +43,11 @@ jobs:
                   "head":"${{ github.ref_name }}",
                   "base":"main"
                 }')
-          echo "pr_number=$(echo $response | jq '.number')" >> "$GITHUB_OUTPUT"        
+          echo "prNumber=$(echo $response | jq '.number')" >> "$GITHUB_OUTPUT"        
 
       - name: Add label
         env:
-          PR_NUMBER: ${{ steps.createPr.outputs.pr_number }}
+          PR_NUMBER: ${{ steps.createPr.outputs.prNumber }}
         run: |
           echo "Add label to PR nr. ${{ env.PR_NUMBER }}"
           curl -L \
@@ -56,7 +56,9 @@ jobs:
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
            https://api.github.com/repos/andrei-prokofjev/volvo-xc60/issues/${{ env.PR_NUMBER }}/labels \
-          -d '{"labels":["bug","enhancement"]}'
+          -d '{ 
+                "labels":["AUTOMATED PR"]
+              }'
   
 
   create-release:
