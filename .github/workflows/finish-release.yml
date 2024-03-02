@@ -32,7 +32,7 @@ jobs:
         env:
           VERSION: ${{ steps.parse.outputs.version }}
         run: |
-          response = $(curl -L \
+          status=$(curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
