@@ -10,7 +10,7 @@ on:
 jobs:
   create-new-release:
     name: Create a new release
-    runs-on: ubuntu-latest
+    runs-on: macOS
     env:
       VERSION: ${{ github.event.inputs.version }}
     steps:
