@@ -45,7 +45,7 @@ jobs:
                   "base":"main"
                 }')
             echo "response=${response}"
-            number=$($response | jq -r '.number')
+            number=$(${response} | jq -r '.number')
             echo "num=$number"
 
       - name: Add label
